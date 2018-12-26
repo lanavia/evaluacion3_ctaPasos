@@ -14,11 +14,11 @@
         <TextView
                 android:text="Latitud"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/textView"/>
+                android:layout_height="wrap_content" android:id="@+id/textView" android:paddingLeft="5dp"/>
         <TextView
                 android:text="latitud"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/lblLatitud"/>
+                android:layout_height="wrap_content" android:id="@+id/lblLatitud" android:paddingLeft="5dp"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
@@ -27,17 +27,17 @@
         <TextView
                 android:text="Longitud"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/textView3"/>
+                android:layout_height="wrap_content" android:id="@+id/textView3" android:paddingLeft="5dp"/>
         <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/lblLongitud"/>
+                android:layout_height="wrap_content" android:id="@+id/lblLongitud" android:paddingLeft="5dp"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         <TextView
-                android:text="TextView"
+                android:text="Adress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/lblAddress" android:layout_weight="1"/>
     </LinearLayout>

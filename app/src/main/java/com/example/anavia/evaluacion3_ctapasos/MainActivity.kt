@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback {
     var latitude =0.0
     var longitude = 0.0
     var saveStep:Boolean = true
+    var allPossition:String = ""
     // llave sha1 project
     // 0A:2B:40:D0:E8:BF:49:C5:29:F2:52:67:6D:8B:B7:E3:AB:B7:CD:AF
     // Clave ApiGoogle
@@ -69,17 +70,49 @@ class MainActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback {
         var getActualAddress = geoCoder.getFromLocation(latitude,longitude,1)
 
 
-        if(saveStep) {
+        btnBeginSteps.setOnClickListener {
+            Toast.makeText(this,"Inicio contador de pasos", Toast.LENGTH_SHORT).show()
+            allPossition = ""
+            if (saveStep) {
 
-            lblAddress.text = getActualAddress[0].getAddressLine(0)
-            map?.addMarker(MarkerOptions().position(marcador))
+                if (getActualAddress.size != 0) {
+                    allPossition = allPossition + " -" + getActualAddress.get(0).getAddressLine(0)
+                    lblAddress.text = allPossition
+                }
 
-            myDB.insertar(Ubication(0,longitude,latitude))
+                map?.addMarker(MarkerOptions().position(marcador))
+
+                myDB.insertar(Ubication(0, longitude, latitude))
+            }
         }
 
-
-        btnStopSteps.setOnClickListener {
+        btnStopSteps.setOnClickListener{
+            Toast.makeText(this,"Detener contador de pasos", Toast.LENGTH_SHORT).show()
             saveStep = false
+        }
+
+        btnDeleteStepsRoute.setOnClickListener {
+            Toast.makeText(this,"Eliminar ruta contador de pasos", Toast.LENGTH_SHORT).show()
+            //advise delete data
+            var alerts = AlertDialog.Builder(this)
+                .setTitle("Con esto eliminará los registros de la bd")
+                .setMessage("Está seguro?")
+
+            alerts.setPositiveButton("ok", DialogInterface.OnClickListener { dialog, which ->
+                map?.clear()
+                for (steps in myDB.listar()){
+                    map?.addMarker(MarkerOptions().position(marcador))
+
+                    //delete DB
+                    myDB.eliminar(steps.id)
+                }
+
+            })
+
+            alerts.setNegativeButton("no", DialogInterface.OnClickListener { dialog, which ->
+                dialog.cancel()
+            })
+
         }
 
 
@@ -120,36 +153,12 @@ class MainActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback {
         //inicialize the first marker
         btnBeginSteps.setOnClickListener {
             Toast.makeText(this,"Inicio contador de pasos", Toast.LENGTH_SHORT).show()
-
               map?.addMarker(MarkerOptions().position(marcador))
               myDB.insertar(Ubication(0, longitude, latitude))
 
         }
 
-        btnStopSteps.setOnClickListener{
-            saveStep = false
-        }
 
-        btnDeleteStepsRoute.setOnClickListener {
-            //advise delete data
-            var alerts = AlertDialog.Builder(this)
-                .setTitle("Con esto eliminará los registros de la bd")
-                .setMessage("Está seguro?")
-
-            alerts.setPositiveButton("ok", DialogInterface.OnClickListener { dialog, which ->
-                    map?.clear()
-                    for (steps in myDB.listar()){
-                        map?.addMarker(MarkerOptions().position(marcador))
-                        //delete DB
-                        myDB.eliminar(steps.id)
-                    }
-            })
-
-            alerts.setNegativeButton("no", DialogInterface.OnClickListener { dialog, which ->
-                dialog.cancel()
-            })
-
-        }
 
 
     }
