@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity" android:orientation="vertical">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:text="Latitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/textView"/>
+        <TextView
+                android:text="latitud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/lblLatitud"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:text="Longitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/textView3"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/lblLongitud"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/lblAddress" android:layout_weight="1"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:gravity="center" android:id="@+id/lySteps">
+        <Button
+                android:text="Contar Pasos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/btnBeginSteps"/>
+        <Button
+                android:text="Detener Cuenta Pasos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/btnStopSteps"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:gravity="center" android:id="@+id/lyRoutes">
+        <Button
+                android:text="Dibujar Ruta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/btnDrawPoints"/>
+        <Button
+                android:text="Borrar Ruta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/btnDeleteStepsRoute"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/lyMap">
+        <fragment
+                android:id="@+id/frgMyMap"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>
